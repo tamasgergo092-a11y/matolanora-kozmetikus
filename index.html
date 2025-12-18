@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matola Nóra | Kozmetikus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ios-blue: #007AFF;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top right, #ffffff, #fff5f8, #f0f0f0);
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            width: 100%;
+            max-width: 360px;
+            border-radius: 45px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            padding: 45px 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            margin-bottom: 25px;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            font-size: 32px;
+            color: #1c1c1e;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #8e8e93;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 600;
+            margin-bottom: 35px;
+            margin-top: 10px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.95);
+            color: #000;
+            padding: 18px;
+            border-radius: 22px;
+            font-weight: 600;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+            background: #f2f2f7;
+        }
+
+        .btn-primary {
+            background: #1c1c1e;
+            color: #ffffff;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+            margin-top: 5px;
+        }
+
+        .address-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0,0,0,0.03);
+            border-radius: 25px;
+            font-size: 13px;
+            color: #3a3a3c;
+            line-height: 1.6;
+        }
+
+        .sparkle-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="sparkle-overlay"></div>
+
+    <div class="card">
+        <img src="nora.jpeg" alt="Matola Nóra" class="profile-img">
+        
+        <h1>Matola Nóra</h1>
+        <p class="subtitle">Kozmetikus</p>
+
+        <div class="links">
+            <a href="tel:+36300975317" class="btn">📱 +36 30 097 5317</a>
+            <a href="mailto:matolanora@gmail.com" class="btn">✉️ matolanora@gmail.com</a>
+            <a href="https://www.notino.hu/szalonok/hair-shop-koki-terminal/" target="_blank" class="btn">🗓️ Időpont & Árlista</a>
+            <a href="https://maps.app.goo.gl/yLzSAnUvYQYfEaX38" target="_blank" class="btn">📍 Térkép megnyitása</a>
+            
+            <a href="#" class="btn btn-primary" onclick="generateVCard()">💾 Névjegy mentése</a>
+        </div>
+
+        <div class="address-box">
+            <strong>Hair Shop KÖKI Terminál</strong><br>
+            1191 Budapest, Vak Bottyán utca 75. A-C
+        </div>
+    </div>
+
+    <script>
+        function generateVCard() {
+            const vcard = "BEGIN:VCARD\n" +
+                          "VERSION:3.0\n" +
+                          "FN:Matola Nóra\n" +
+                          "ORG:Kozmetikus\n" +
+                          "TEL;TYPE=CELL:+36300975317\n" +
+                          "EMAIL:matolanora@gmail.com\n" +
+                          "ADR;TYPE=WORK:;;Vak Bottyán utca 75;Budapest;;1191;Hungary\n" +
+                          "END:VCARD";
+            
+            const blob = new Blob([vcard], { type: "text/vcard" });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'Matola_Nora.vcf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
